@@ -27,14 +27,21 @@ jobs:
         api-level: 33
         build-tools: 33.0.2
 
-    - name: Prepare Gradle Wrapper (Fix for Gradle 9 issue)
-      run: gradle wrapper --gradle-version 8.7
+    - name: Change directory to app folder
+      run: cd GameTimeLimiter && ls -la
+
+    - name: Prepare Gradle Wrapper
+      run: |
+        cd GameTimeLimiter
+        gradle wrapper --gradle-version 8.7
 
     - name: Build APK
-      run: ./gradlew assembleDebug
+      run: |
+        cd GameTimeLimiter
+        ./gradlew assembleDebug
 
     - name: Upload APK Artifact
       uses: actions/upload-artifact@v4
       with:
         name: GameTimeLimiter-APK
-        path: app/build/outputs/apk/debug/app-debug.apk
+        path: GameTimeLimiter/app/build/outputs/apk/debug/app-debug.apk
