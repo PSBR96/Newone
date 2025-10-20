@@ -27,10 +27,15 @@ jobs:
         api-level: 33
         build-tools: 33.0.2
 
-    - name: Build Debug APK
+    - name: Unzip Project
       run: |
-        cd GameTimeLimiter
-        ./gradlew assembleDebug
+        unzip GameTimeLimiter_final.zip -d GameTimeLimiter
+
+    - name: Make Gradle Wrapper Executable
+      run: chmod +x GameTimeLimiter/gradlew
+
+    - name: Build Debug APK
+      run: ./GameTimeLimiter/gradlew assembleDebug
 
     - name: Upload APK Artifact
       uses: actions/upload-artifact@v4
