@@ -22,10 +22,13 @@ jobs:
           java-version: '17'
           distribution: 'temurin'
 
+      - name: Install Gradle
+        uses: gradle/gradle-build-action@v3
+
       - name: Build Debug APK
         run: |
           cd GameTimeLimiter
-          ./gradlew assembleDebug
+          gradle assembleDebug
 
       - name: Upload APK
         uses: actions/upload-artifact@v4
