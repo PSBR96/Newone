@@ -27,15 +27,7 @@ jobs:
         api-level: 33
         build-tools: 33.0.2
 
-    - name: Change directory to app folder
-      run: cd GameTimeLimiter && ls -la
-
-    - name: Prepare Gradle Wrapper
-      run: |
-        cd GameTimeLimiter
-        gradle wrapper --gradle-version 8.7
-
-    - name: Build APK
+    - name: Build Debug APK
       run: |
         cd GameTimeLimiter
         ./gradlew assembleDebug
@@ -45,3 +37,4 @@ jobs:
       with:
         name: GameTimeLimiter-APK
         path: GameTimeLimiter/app/build/outputs/apk/debug/app-debug.apk
+        
